@@ -1,0 +1,18 @@
+﻿<% include templates/header.ejs %>
+	<body>
+	<% include templates/navbar.ejs %> 
+	<div class = "container">
+		<h1> <%= title %></h1>
+		<br>
+		<div class = "container">
+			<form method="POST" action="/tts">
+			  Annoy me:<br>
+			  <input type="text" name="ttsField" value="">
+			  <br>
+			  <br>
+			  <input type="submit" value="Submit">
+			</form> 
+			<br>
+		</div>
+	</div>
+<% include templates/footer.ejs %>
