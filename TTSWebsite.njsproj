@@ -34,6 +34,9 @@
     <Compile Include="routes\about.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="routes\dnd.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="routes\index.js" />
     <Compile Include="routes\tts.js">
       <SubType>Code</SubType>
@@ -45,6 +48,9 @@
     <Content Include="public\stylesheets\main.css" />
     <Content Include="README.md" />
     <Content Include="views\about.ejs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\dnd.ejs">
       <SubType>Code</SubType>
     </Content>
     <Content Include="views\error.ejs">

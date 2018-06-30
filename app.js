@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var about = require('./routes/about');
 var tts = require('./routes/tts');
+var dnd = require('./routes/dnd');
 
 var app = express();
 
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/about', about);
 app.use('/tts', tts);
+app.use('/dnd', dnd);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -59,13 +61,8 @@ app.use(function (err, req, res, next) {
     });
 });
 
-app.set('port', 80);
+app.set('port', 3000);
 
 var server = app.listen(app.get('port'), function () {
     debug('Express server listening on port ' + server.address().port);
-});
-
-app.post('/tts', function (request, response) {
-    console.log("We are in POST");
-    return;
 });
