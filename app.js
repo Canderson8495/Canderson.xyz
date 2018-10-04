@@ -5,11 +5,13 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
-var about = require('./routes/about');
+var resume = require('./routes/resume');
 var tts = require('./routes/tts');
 var dnd = require('./routes/dnd');
+var gm = require('./routes/gm');
 
 var app = express();
 
@@ -26,16 +28,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/about', about);
-app.use('/tts', tts);
-app.use('/dnd', dnd);
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
+app.use('/resume', resume);
+app.use('/tts', tts);
+
+app.use('/dnd', dnd);
+app.use('/dnd/gm', gm);
+
+
 
 // error handlers
 
@@ -66,3 +66,4 @@ app.set('port', 3000);
 var server = app.listen(app.get('port'), function () {
     debug('Express server listening on port ' + server.address().port);
 });
+

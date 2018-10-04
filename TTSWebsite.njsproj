@@ -31,14 +31,35 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
-    <Compile Include="routes\about.js">
+    <Compile Include="modules\db.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="modules\Generator.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="routes\resume.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="routes\dnd.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="routes\gm.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="routes\index.js" />
+    <Compile Include="routes\pc.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="routes\tts.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="public\javascripts\adventureDisplay.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="views\dndgmbrew.ejs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="views\dndgmencounters.ejs">
       <SubType>Code</SubType>
     </Compile>
     <Content Include=".bowerrc">
@@ -47,10 +68,19 @@
     <Content Include="package.json" />
     <Content Include="public\stylesheets\main.css" />
     <Content Include="README.md" />
-    <Content Include="views\about.ejs">
+    <Content Include="views\dndgmbrewadd.ejs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\resume.ejs">
       <SubType>Code</SubType>
     </Content>
     <Content Include="views\dnd.ejs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\dndgm.ejs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\dndpc.ejs">
       <SubType>Code</SubType>
     </Content>
     <Content Include="views\error.ejs">
@@ -60,6 +90,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="views\templates\footer.ejs">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="views\templates\gmNavbar.ejs">
       <SubType>Code</SubType>
     </Content>
     <Content Include="views\templates\header.ejs">
@@ -73,6 +106,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="models\" />
+    <Folder Include="modules\" />
+    <Folder Include="controllers\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
     <Folder Include="public\javascripts\" />

@@ -1,0 +1,20 @@
+﻿<% include templates/header.ejs %>
+<body>
+<% include templates/navbar.ejs %> 
+<% include templates/gmNavbar.ejs %> 
+	<div class = "jumbotron">
+		<div class = "container">
+			<h1> <%= title %></h1>
+			<h5>A beutiful amount of home brew content</h5>
+		</div>
+	</div>
+	<div id = "root">
+		<div class = "container">
+				<% for(var i=0; i < adventureTitles.length; i++) { %>
+					<div class = "card">
+						<h1><%= adventureTitles[i].Title %></h1>
+					</div>
+				<% } %>
+		</div>
+	</div>
+<% include templates/footer.ejs %>

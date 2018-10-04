@@ -1,18 +1,21 @@
 ﻿<% include templates/header.ejs %>
 	<body>
 	<% include templates/navbar.ejs %> 
-	<div class = "container">
-		<h1> <%= title %></h1>
+		<div class = "jumbotron">
+			<div class = "container">
+				<h1 class = "display-4"> <%= title %></h1>
+				<p class = "lead"> Am I not responding to your direct messages again? </p>
+			</div>
+		</div>
 		<br>
 		<div class = "container">
-			<form method="POST" action="/tts">
-			  Annoy me:<br>
-			  <input type="text" name="ttsField" value="">
-			  <br>
-			  <br>
-			  <input type="submit" value="Submit">
-			</form> 
-			<br>
+		<form method="POST" action="/tts">
+			 <h4>Annoy me:</h4>
+			 <input placeholder = "Why would you do this?" class = "form-control" type="text" name="ttsField" value="">
+			 <br>
+			<input class="btn btn-primary" type="submit" value="Submit">
+		</form> 
+		<br>
 		</div>
 	</div>
 <% include templates/footer.ejs %>
