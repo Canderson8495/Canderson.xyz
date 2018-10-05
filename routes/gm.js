@@ -23,6 +23,7 @@ router.get('/adventures', function (req, res) {
     
 });
 
+
 router.get('/adventures/add', function (req, res) {
     res.render('dndgmbrewadd', {
         title: 'Add Adventure'

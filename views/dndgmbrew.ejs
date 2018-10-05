@@ -9,10 +9,11 @@
 		</div>
 	</div>
 	<div id = "root">
-		<div class = "container">
-				<% for(var i=0; i < adventureTitles.length; i++) { %>
+		<div class = "card-container">
+				<% for(var i=0; i < 9; i++) { %>
 					<div class = "card">
-						<h1><%= adventureTitles[i].Title %></h1>
+						<h1 class = "head"><%= adventureTitles[i].Title %></h1>
+						<p class = "para"><%= adventureTitles[i].Content %></p>
 					</div>
 				<% } %>
 		</div>
