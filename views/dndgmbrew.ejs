@@ -5,17 +5,45 @@
 	<div class = "jumbotron">
 		<div class = "container">
 			<h1> <%= title %></h1>
-			<h5>A beutiful amount of home brew content</h5>
+			<h5>A expansive amount of home brew content</h5>
 		</div>
 	</div>
 	<div id = "root">
-		<div class = "card-container">
-				<% for(var i=0; i < 9; i++) { %>
-					<div class = "card">
-						<h1 class = "head"><%= adventureTitles[i].Title %></h1>
-						<p class = "para"><%= adventureTitles[i].Content %></p>
+		<div class = "row">
+			<ul class="breadcrumb">
+				<li><a href="/dnd">DND</a></li>
+				<li><a href="/dnd/gm">GM</a></li>
+				<li>Adventures</li>
+			</ul>
+			<div class = "col-md-10">
+				<div class = "card-container">
+					<div class = col-md-6>
+						<% for(var i=0; i < 8; i+= 2) { %>
+							<div id = 'cardClass<%=i%>' class = "card">
+								<h1 class = "head"><%= adventureTitles[i].Title %></h1>
+								<div class = 'cardStyle'>
+								<%- adventureTitles[i].Content.substring(0,300)+"..." %><%- "</p></strong></i></u></center></code></li></ul></ol></span>" %>
+								</div>
+								<a class = "btn btn-info leg" href = "/dnd/gm/adventures/<%= adventureTitles[i].idADVENTURE %>">View</a>
+							</div>
+						<% } %>
 					</div>
-				<% } %>
+					<div class = col-md-6>
+						<% for(var i=1; i < 8; i+= 2) { %>
+							<div id = 'cardClass<%=i%>' class = "card">
+								<h1 class = "head"><%= adventureTitles[i].Title %></h1>
+								<div class = 'cardStyle'>
+								<%- adventureTitles[i].Content.substring(0,300)+"..." %><%- "</p></strong></i></u></center></code></li></ul></ol></span>" %>
+								</div>
+								<a class = "btn btn-info leg" href = "/dnd/gm/adventures/<%= adventureTitles[i].idADVENTURE %>">View</a>
+							</div>
+						<% } %>
+					</div>
+				</div>
+			</div>
+			<div class = "col-md-2">
+				<a class = "btn btn-success" href = "/dnd/gm/adventures/add">New Adventure</a>
+			</div>
 		</div>
 	</div>
 <% include templates/footer.ejs %>

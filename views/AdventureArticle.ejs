@@ -4,16 +4,24 @@
 	<div class = "jumbotron">
 			<div class = "container">
 			<h1 class = "display-4"> <%= title %></h1>
-			<p class = "lead">A Dungeon and Dragon's tool kit.</h5>
+			<p class = "lead">A new adventure awaits...</h5>
 			</div>
 	</div>
-	<div class = "container">
-
+	<div class = "root">
+		<div class = "container">
+			<center> <h1><%= title %></h1> <h5> An adventure created by <%= author %> </h5></center>
+			<%- content %>
+			<hr></hr>
+			<div class = "row">
+				<div class = "col-md-1">
+					<a class = "btn btn-primary" href = "/dnd/gm/adventures/edit/<%= id %>">Update</a>
+				</div>
+				<div class = "col-md-1">
+					<form name ="delete" method="POST" action="/dnd/gm/adventures/<%= id %>">
+						<input class="btn btn-danger" type="submit" value="Delete">
+					</form>	
+				</div>
+			</div>
+		</div>
 	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
 <% include templates/footer.ejs %>

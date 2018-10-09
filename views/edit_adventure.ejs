@@ -26,20 +26,14 @@
 		</div>
 	</div>
 	<div class = "container">
-		<ul class="formPage">
-			<li><a href="/dnd">DND</a></li>
-			<li><a href="/dnd/gm">GM</a></li>
-			<li><a href="/dnd/gm/adventures">Adventures</a></li>
-			<li>Adding Adventure</li>
-		</ul>
-		<form id ='FullForm' method = "POST" action ="/dnd/gm/adventures/add">
+		<form id ='FullForm' method = "POST" action ="/dnd/gm/adventures/edit/<%= adventure.idADVENTURE %>">
 			<div class ="form-group">
 			<label> Title </label>
-			<input type = "text" name = "title"  class = "form-control thicc">
+			<input type = "text" name = "title"  class = "form-control thicc" value='<%= adventure.Title %>'>
 			</div>
 			<div class ="form-group">
 			<label> Author </label>
-			<input type = "text" name = "author"  class = "form-control thicc">
+			<input type = "text" name = "author"  class = "form-control thicc" value='<%= adventure.Author %>'>
 			</div>
 			<!-- Include Quill stylesheet -->
 			<div class = "form-group">
@@ -49,6 +43,7 @@
 			<input id = "HiddenContent" type ='hidden' name = 'content' class = 'form-control'>
 			<!-- Create the editor container -->
 			<div id="editor-container" class = "form-control" name = "content">
+				<%- adventure.Content %>
 			</div>
 			<!-- Include the Quill library -->
 			<script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
@@ -65,10 +60,11 @@
 				  [{ 'align': [] }]
 				]
 			  },
-			  placeholder: 'Compose an epic...',
 			  theme: 'snow'  // or 'bubble'
 
 			});
+
+
 			var form = document.getElementById('FullForm');
 			form.onsubmit = function() {
 			  var html = form.children[2].outerHTML

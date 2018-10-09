@@ -74,6 +74,9 @@
     <Content Include="views\dndgmbrewadd.ejs">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="views\edit_adventure.ejs">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="views\resume.ejs">
       <SubType>Code</SubType>
     </Content>
