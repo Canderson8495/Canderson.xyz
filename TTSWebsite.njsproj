@@ -104,6 +104,9 @@
     <Content Include="views\templates\header.ejs">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="views\message.ejs">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="views\templates\navbar.ejs">
       <SubType>Code</SubType>
     </Content>

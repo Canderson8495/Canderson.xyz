@@ -4,8 +4,8 @@
 <% include templates/gmNavbar.ejs %> 
 	<div class = "jumbotron">
 		<div class = "container">
-			<h1> <%= title %></h1>
-			<h5>A expansive amount of home brew content</h5>
+							<h1 class = "display-4"> <%= title %></h1>
+				<p class = "lead"> An expansive amount of homebrew content.</p>
 		</div>
 	</div>
 	<div id = "root">
@@ -16,6 +16,8 @@
 				<li>Adventures</li>
 			</ul>
 			<div class = "col-md-10">
+				<h1 class = "display-5" style = "text-align: center;"> Popular Adventures</h1>
+				<hr style = "margin-left: 2rem; margin-right: 2rem;">
 				<div class = "card-container">
 					<div class = col-md-6>
 						<% for(var i=0; i < 8; i+= 2) { %>
@@ -42,7 +44,23 @@
 				</div>
 			</div>
 			<div class = "col-md-2">
-				<a class = "btn btn-success" href = "/dnd/gm/adventures/add">New Adventure</a>
+				<a class = "btn btn-success btnStyle" href = "/dnd/gm/adventures/add">New Adventure</a>
+				<h4 class = "lead"  style = "text-align: center;margin-top: 1.5rem;"> Adventures </p>
+				<hr>
+				<div class = "list-group" style = "margin-top: 1rem; margin-bottom: 1rem;">
+					<% for(var i=0; i < adventureTitles.length; i++) { %>
+							<a class="list-group-item" href = "/dnd/gm/adventures/<%= adventureTitles[i].idADVENTURE %>"><%= adventureTitles[i].Title %></a>
+					<% } %>
+					<% for(var i=0; i < adventureTitles.length; i++) { %>
+							<a class="list-group-item" href = "/dnd/gm/adventures/<%= adventureTitles[i].idADVENTURE %>"><%= adventureTitles[i].Title %></a>
+					<% } %>
+					<% for(var i=0; i < adventureTitles.length; i++) { %>
+							<a class="list-group-item" href = "/dnd/gm/adventures/<%= adventureTitles[i].idADVENTURE %>"><%= adventureTitles[i].Title %></a>
+					<% } %>
+					<a href = "/" class = "list-group-item"> Test </a>
+					<a href = "/" class = "list-group-item"> Test </a>
+
+				</div>
 			</div>
 		</div>
 	</div>

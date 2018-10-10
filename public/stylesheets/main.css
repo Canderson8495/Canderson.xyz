@@ -65,10 +65,6 @@ html {
 }
 .leg {
     text-align: center;
-    padding: 1.5rem 2.5rem;
-    margin-top: 0 0 2rem 0;
-    margin-left: 0 0 2rem 0;
-    margin-right: 0 0 2rem 0;
     font-size: 1.5rem;
     color: white;
 }
@@ -87,6 +83,7 @@ img {
 
 .card-container {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .card {
@@ -138,6 +135,7 @@ img {
     margin: 0;
     max-height: 200px;
 }
+
 .root{
     min-height:750px;
 }
@@ -156,32 +154,6 @@ img {
         min-height: 500px;
     }
 }
-/* The sidebar menu */
-.sidenav {
-    height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 160px; /* Set the width of the sidebar */
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 0; /* Stay on top */
-    top: 50px; /* Stay at the top */
-    left: 0;
-    background-color: #111; /* Black */
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 20px;
-}
-
-    /* The navigation menu links */
-    .sidenav a {
-        padding: 6px 8px 6px 16px;
-        text-decoration: none;
-        font-size: 25px;
-        color: #818181;
-        display: block;
-    }
-
-        /* When you mouse over the navigation links, change their color */
-        .sidenav a:hover {
-            color: #f1f1f1;
-        }
 
 /* Style page content */
 .main {
@@ -261,3 +233,9 @@ ul.formPage {
                 color: #01447e;
                 text-decoration: underline;
             }
+
+.btnStyle{
+    margin-top: 1rem;
+    padding: 1rem;
+    width: 100%;
+}

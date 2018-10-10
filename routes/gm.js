@@ -5,6 +5,7 @@ var p = require('path');
 var mysql = require('mysql');
 var db = require(p.dirname(module.parent.filename) + '/modules/db.js');
 
+
 /* GET  GM Toolkit menu */
 router.get('/', function (req, res) {
     res.render('dndgm', { title: 'GM ToolKit' });
@@ -92,8 +93,9 @@ router.post('/adventures/add', function (req, res) {
     db.query(sql, function (err, result) {
         if (err) throw err;
         console.log("1 record inserted");
+        //req.flash('success', "Adventure Added");
+        res.redirect('/dnd/gm/adventures');
     });
-    res.redirect('/dnd/gm/adventures/add');
     //I have to parse SQL functions to make sure they aren't misuing my database. There is a npm for this.
 });
 
