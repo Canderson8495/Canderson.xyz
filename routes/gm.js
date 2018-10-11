@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 var p = require('path');
 var mysql = require('mysql');
-var db = require(p.dirname(module.parent.filename) + '/modules/db.js');
+var db = require(p.dirname(module.parent.filename) + '/config/db.js');
 
 
 /* GET  GM Toolkit menu */

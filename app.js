@@ -36,6 +36,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+require('./config/passport')(passport);
+// Passport Middleware
+console.log("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get('*', function (req, res, next) {
+    res.locals.user = req.user || null;
+    console.log('oh shit');
+    next();
+});
+
 app.use('/', routes);
 
 app.use('/resume', resume);
@@ -45,6 +57,9 @@ app.use('/dnd', dnd);
 app.use('/dnd/gm', gm);
 app.use('/users',users)
 
+
+
+// Passport Config
 
 
 // error handlers

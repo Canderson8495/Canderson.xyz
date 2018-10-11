@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 var p = require('path');
 var mysql = require('mysql');
-var db = require(p.dirname(module.parent.filename) + '/modules/db.js');
+var db = require(p.dirname(module.parent.filename) + '/config/db.js');
 const { check, validationResult } = require('express-validator/check');
 
 router.get('/register', function (req, res) {
@@ -67,5 +67,16 @@ router.get('/login', function (req, res) {
         title: 'Login'
     });
 })
+
+//login process
+router.post('/login', function (req, res, next) {
+    passport.authenticate('local', {
+        successRedirect: '/tts',
+        failureRedirect: '/dnd',
+        //have to connect flashing ffs
+        failureFlash: false
+    })(req, res, next);
+    console.log("we have finsihed");
+});
 
 module.exports = router;
