@@ -40,7 +40,6 @@ router.post('/register', [check('name').isLength({ min: 1 }).trim().withMessage(
 
     if (!errors.isEmpty()) {
         console.log(errors.array());
-        res.render
     } else {
         console.log("we're here");
         bcrypt.genSalt(10, function (err, salt) {
@@ -71,12 +70,19 @@ router.get('/login', function (req, res) {
 //login process
 router.post('/login', function (req, res, next) {
     passport.authenticate('local', {
-        successRedirect: '/tts',
-        failureRedirect: '/dnd',
+        successRedirect: '/',
+        failureRedirect: '/users/login',
         //have to connect flashing ffs
         failureFlash: false
     })(req, res, next);
-    console.log("we have finsihed");
+    console.log("Oh what the fuck");
 });
+
+
+router.get('/logout', function (req, res) {
+    req.logout();
+    res.redirect('/users/login');
+});
+
 
 module.exports = router;

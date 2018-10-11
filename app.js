@@ -10,56 +10,37 @@ var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var session = require('express-session');
 var passport = require('passport');
+var p = require('path');
+var mysql = require('mysql');
+var db = require('./config/db.js');
 
+const app = express();
 
-
-
-var routes = require('./routes/index');
-var resume = require('./routes/resume');
-var tts = require('./routes/tts');
-var dnd = require('./routes/dnd');
-var gm = require('./routes/gm');
-var users = require('./routes/users');
-
-
-var app = express();
 app.use(flash());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Passport Config
 require('./config/passport')(passport);
 // Passport Middleware
-console.log("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+app.use(session({ secret: 'anything' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.get('*', function (req, res, next) {
-    res.locals.user = req.user || null;
-    console.log('oh shit');
+    console.log(req.session)
+    res.locals.user = req.isAuthenticated();
     next();
 });
 
-app.use('/', routes);
 
-app.use('/resume', resume);
-app.use('/tts', tts);
-
-app.use('/dnd', dnd);
-app.use('/dnd/gm', gm);
-app.use('/users',users)
-
-
-
-// Passport Config
 
 
 // error handlers
@@ -85,6 +66,19 @@ app.use(function (err, req, res, next) {
         error: {}
     });
 });
+
+var routes = require('./routes/index');
+var resume = require('./routes/resume');
+var tts = require('./routes/tts');
+var dnd = require('./routes/dnd');
+var gm = require('./routes/gm');
+var users = require('./routes/users');
+app.use('/', routes);
+app.use('/resume', resume);
+app.use('/tts', tts);
+app.use('/dnd', dnd);
+app.use('/dnd/gm', gm);
+app.use('/users', users);
 
 app.set('port', 3000);
 
