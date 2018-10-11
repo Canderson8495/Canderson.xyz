@@ -29,8 +29,14 @@
         </div>
       </li>
     </ul>
-    <form class="form-inline my-2 my-md-0">
-      <input class="form-control" type="text" placeholder="Search">
-    </form>
+
+    <ul class="nav navbar-nav navbar-right">
+      <% if(user){ %>
+        <li class="nav-item"><a class="nav-link" href="/users/logout"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+      <% } else { %>
+        <li class="nav-item"><a class="nav-link" href="/users/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li class="nav-item"><a class="nav-link" href="/users/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <% } %>
+    </ul>
   </div>
 </nav>
