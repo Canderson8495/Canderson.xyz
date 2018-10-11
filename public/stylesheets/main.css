@@ -137,7 +137,8 @@ img {
 }
 
 .root{
-    min-height:750px;
+    min-height:1000px;
+    margin: auto;
 }
 @media screen and (min-height: 500px) {
     .root {
@@ -238,4 +239,9 @@ ul.formPage {
     margin-top: 1rem;
     padding: 1rem;
     width: 100%;
+}
+
+
+html, body {
+    min-height: 100%;
 }

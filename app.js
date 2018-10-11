@@ -10,7 +10,6 @@ var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var session = require('express-session');
 var passport = require('passport');
-var GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
 
 
 
@@ -20,6 +19,8 @@ var resume = require('./routes/resume');
 var tts = require('./routes/tts');
 var dnd = require('./routes/dnd');
 var gm = require('./routes/gm');
+var users = require('./routes/users');
+
 
 var app = express();
 app.use(flash());
@@ -42,61 +43,7 @@ app.use('/tts', tts);
 
 app.use('/dnd', dnd);
 app.use('/dnd/gm', gm);
-
-
-
-
-// Use the GoogleStrategy within Passport.
-//   Strategies in passport require a `verify` function, which accept
-//   credentials (in this case, a token, tokenSecret, and Google profile), and
-//   invoke a callback with a user object.
-passport.use(new GoogleStrategy({
-    consumerKey: GOOGLE_CONSUMER_KEY,
-    consumerSecret: GOOGLE_CONSUMER_SECRET,
-    callbackURL: "http://www.example.com/auth/google/callback"
-},
-    function (token, tokenSecret, profile, done) {
-        User.findOrCreate({ googleId: profile.id }, function (err, user) {
-            return done(err, user);
-        });
-    }
-));
-
-
-
-
-// Express Session Middleware
-app.use(session({
-    secret: 'keyboard cat',
-    resave: true,
-    saveUninitialized: true
-}));
-
-// Express Messages Middleware
-app.use(require('connect-flash')());
-app.use(function (req, res, next) {
-    res.locals.messages = require('express-messages')(req, res);
-    next();
-});
-
-// Express Validator Middleware
-app.use(expressValidator({
-    errorFormatter: function (param, msg, value) {
-        var namespace = param.split('.')
-            , root = namespace.shift()
-            , formParam = root;
-
-        while (namespace.length) {
-            formParam += '[' + namespace.shift() + ']';
-        }
-        return {
-            param: formParam,
-            msg: msg,
-            value: value
-        };
-    }
-}));
-
+app.use('/users',users)
 
 
 
