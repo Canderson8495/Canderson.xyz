@@ -9,6 +9,11 @@
 		</div>
 		<div class = "root">
 		<div class = "container">
+		<% flash.forEach(function(message) { %>
+				<div class = "alert alert-<%= message.type %>" role = "alert">
+					 <%= message.message %>
+				</div> 
+			<% }); flash.shift(); flash.shift(); flash.shift(); flash.shift(); flash.shift(); flash.shift(); flash.shift(); flash.shift(); flash.shift(); %>
 			<div class = "row">
 				<div class = "col-md-6">
 				<div class="circle-avatar" style="background-image:url('/pictures/Cam.png')"></div>

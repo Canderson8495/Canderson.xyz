@@ -14,8 +14,8 @@ router.get('/register', function (req, res) {
 });
 
 
-router.post('/register', [check('name').isLength({ min: 1 }).trim().withMessage('Name required'),
-    check('email').isLength({ min: 1 }).trim().withMessage('Email required'),
+router.post('/register', [check('name').isLength({ min: 1 }).trim().withMessage('Name is required'),
+    check('email').isLength({ min: 1 }).trim().withMessage('Email is required'),
     check('email').isEmail().trim().withMessage('Email is not valid'),
     check('password').isLength({ min: 1 }).withMessage('Password required'),
     check('password').custom((value, { req, loc, path }) => {
@@ -25,7 +25,7 @@ router.post('/register', [check('name').isLength({ min: 1 }).trim().withMessage(
         } else {
             return value;
         }
-    })], (req, res) => {
+    }).withMessage("Passwords do not match")], (req, res) => {
     console.log("enter");
     
     const name = req.body.name;
@@ -38,8 +38,13 @@ router.post('/register', [check('name').isLength({ min: 1 }).trim().withMessage(
 
     console.log("value came back");
 
-    if (!errors.isEmpty()) {
-        console.log(errors.array());
+        if (!errors.isEmpty()) {
+            var err = errors.array();
+            for (var i = 0; i < err.length; i++) {
+                req.flash('danger', err[i].msg);
+            
+            }
+            res.redirect('/users/register');
     } else {
         console.log("we're here");
         bcrypt.genSalt(10, function (err, salt) {
@@ -73,9 +78,10 @@ router.post('/login', function (req, res, next) {
         successRedirect: '/',
         failureRedirect: '/users/login',
         //have to connect flashing ffs
-        failureFlash: false
+        badRequestMessage: req.flash('danger', 'The username or password was incorrect'),
+        goodRequestMessage: req.flash('success', 'The username or password was correct'),
+        failureFlash: true
     })(req, res, next);
-    console.log("Oh what the fuck");
 });
 
 

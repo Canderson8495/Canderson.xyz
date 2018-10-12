@@ -9,13 +9,17 @@ module.exports = function (passport) {
 
 
     passport.use(new LocalStrategy(function (username, password, done) {
+
+        if (username.length == 0 || password.length == 0) {
+            return done(null, false, { type: 'danger', message: 'Please input all credentials' });
+        }
         // Match Username
         var sql = "SELECT * FROM mydb.USER WHERE Username = " + mysql.escape(username) + ";";
         db.query(sql, function (err, user) {
             if (err) throw err;
 
             if (!user[0]) {
-                return done(null, false, { message: 'No user found' });
+                return done(null, false, { type: 'danger', message: 'The username or password was incorrect' });
             }
             //Matching password
             bcrypt.compare(password, user[0].Password, function (err, isMatch) {
@@ -23,9 +27,9 @@ module.exports = function (passport) {
                 if (isMatch) {
                     console.log('MATCH FOUND');
                     console.log(user[0].idUSER + "  " + user[0].Username);
-                    return done(null, user[0]);
+                    return done(null, user[0], { type: 'success', message: 'You are now logged in' });
                 } else {
-                    return done(null, false, { message: 'Wrong password' });
+                    return done(null, false, { type: 'danger', message: 'The username or password was incorrect' });
                 }
             });
         });

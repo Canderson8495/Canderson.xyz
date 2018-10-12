@@ -145,8 +145,10 @@ function ensureSubmitter(req, res, next) {
             if (err) throw err;
             if (req.user.idUSER == post[0].Submitter) {
                 console.log("The submitter is the user logged in");
+                req.flash('success', "It has happened");
                 return next();
             } else {
+                req.flash('danger', "If you alter that post, that's like stealing!");
                 console.log("The submitter is not the user logged in");
                 //FLASH HERE (Only the post submitter can alter the post)
                 res.redirect('/dnd/gm/adventures');
@@ -155,7 +157,7 @@ function ensureSubmitter(req, res, next) {
         
     } else {
         console.log("not even logged in");
-        //FLASH HERE (You must be logged in)
+        req.flash('danger', 'You silly goose, you have to be logged in!');
         res.redirect('/users/login');
     }
 }

@@ -9,6 +9,11 @@
 	</div>
 	<div class = "root">
 		<div class = "container">
+			<% flash.forEach(function(message) { %>
+				<div class = "alert alert-<%= message.type %>" role = "alert">
+					 <%= message.message %>
+				</div> 
+			<% }); flash.shift(); flash.shift(); flash.shift(); flash.shift(); flash.shift(); flash.shift(); flash.shift(); flash.shift(); flash.shift(); %>
 			<ul class="formPage">
 				<li><a href="/users">Users</a></li>
 				<li>Login</li>
