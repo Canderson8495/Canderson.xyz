@@ -80,6 +80,7 @@ router.post('/login', function (req, res, next) {
 
 
 router.get('/logout', function (req, res) {
+    console.log("i don't know what's GOING ON" +req.user.idUSER);
     req.logout();
     res.redirect('/users/login');
 });

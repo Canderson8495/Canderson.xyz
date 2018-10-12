@@ -4,6 +4,8 @@ var router = express.Router();
 var p = require('path');
 var mysql = require('mysql');
 var db = require(p.dirname(module.parent.filename) + '/config/db.js');
+var passport = require('passport');
+require('../config/passport')(passport);
 
 
 /* GET  GM Toolkit menu */
@@ -25,7 +27,7 @@ router.get('/adventures', function (req, res) {
     });
 });
 
-router.get('/adventures/add', function (req, res) {
+router.get('/adventures/add', ensureAuthenticated, function (req, res) {
     res.render('dndgmbrewadd', {
         title: 'Add Adventure'
     });
@@ -47,7 +49,7 @@ router.get('/adventures/:id', function (req, res) {
 
 //This is the delete function
 
-router.get('/adventures/edit/:id', function (req, res) {
+router.get('/adventures/edit/:id', ensureSubmitter, function (req, res) {
     var sql = "SELECT * FROM mydb.ADVENTURE WHERE idADVENTURE = " + req.params.id + ";";
     db.query(sql, function (err, result) {
         console.log(result.Title);
@@ -88,7 +90,8 @@ router.post('/adventures/add', function (req, res) {
     console.log(author);
     var content = req.body.content;
     console.log(req.body.content);
-    var sql = "INSERT INTO ADVENTURE (Title, Author, Content) VALUES (" + mysql.escape(title) + ", " + mysql.escape(author) + "," + mysql.escape(content) + ");";
+    console.log("What the FJCK is going  on " + req.user.idUSER);
+    var sql = "INSERT INTO ADVENTURE (Title, Author, Content, Submitter) VALUES (" + mysql.escape(title) + ", " + mysql.escape(author) + "," + mysql.escape(content) + ","+ mysql.escape(req.user.idUSER) + ");";
     console.log(sql);
     db.query(sql, function (err, result) {
         if (err) throw err;
@@ -99,7 +102,8 @@ router.post('/adventures/add', function (req, res) {
     //I have to parse SQL functions to make sure they aren't misuing my database. There is a npm for this.
 });
 
-router.post('/adventures/:id', function (req, res) {
+//DELETE
+router.post('/adventures/:id', ensureSubmitter,  function (req, res) {
     var sql = "DELETE FROM mydb.ADVENTURE WHERE idADVENTURE = " + req.params.id + ";";
     db.query(sql, function (err, result) {
         console.log("Log deleted");
@@ -121,7 +125,39 @@ router.get('/gen', function (req, res) {
     });
 });
 
+//Access Control
 
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    } else {
+        //FLASH HERE
+        res.redirect('/users/login');
+    }
+}
 
+function ensureSubmitter(req, res, next) {
+    console.log("we've entered the ensure submitter auth");
+    if (req.isAuthenticated()) {
+        // Global user == Post user
+        var sql = "SELECT * FROM mydb.ADVENTURE WHERE idADVENTURE = " + req.params.id + ";";
+        db.query(sql, function (err, post) {
+            if (err) throw err;
+            if (req.user.idUSER == post[0].Submitter) {
+                console.log("The submitter is the user logged in");
+                return next();
+            } else {
+                console.log("The submitter is not the user logged in");
+                //FLASH HERE (Only the post submitter can alter the post)
+                res.redirect('/dnd/gm/adventures');
+            }
+        });
+        
+    } else {
+        console.log("not even logged in");
+        //FLASH HERE (You must be logged in)
+        res.redirect('/users/login');
+    }
+}
 
 module.exports = router;

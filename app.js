@@ -80,7 +80,7 @@ app.use('/dnd', dnd);
 app.use('/dnd/gm', gm);
 app.use('/users', users);
 
-app.set('port', 3000);
+app.set('port', 80);
 
 var server = app.listen(app.get('port'), function () {
     debug('Express server listening on port ' + server.address().port);
