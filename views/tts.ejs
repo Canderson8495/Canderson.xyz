@@ -10,6 +10,12 @@
 		<br>
 		<div class ="root">
 		<div class = "container">
+		<% flash.forEach(function(message) { %>
+				<div class = "alert alert-<%= message.type %>" role = "alert">
+					 <%= message.message %>
+				</div> 
+			<% }); flash.shift(); flash.shift(); flash.shift(); flash.shift(); flash.shift(); flash.shift(); flash.shift(); flash.shift(); flash.shift(); %>
+
 		<form method="POST" action="/tts">
 			 <h4>Annoy me:</h4>
 			 <input placeholder = "Why would you do this?" class = "form-control" type="text" name="ttsField" value="">

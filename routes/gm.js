@@ -10,7 +10,7 @@ require('../config/passport')(passport);
 
 /* GET  GM Toolkit menu */
 router.get('/', function (req, res) {
-    res.render('dndgm', { title: 'GM ToolKit' });
+    res.render('dndgm', { title: "Game Master's ToolKit" });
 });
 
 router.get('/adventures', function (req, res) {
@@ -131,7 +131,7 @@ function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     } else {
-        //FLASH HERE
+        req.flash('danger','You need to be logged in to create a post.')
         res.redirect('/users/login');
     }
 }
@@ -148,7 +148,7 @@ function ensureSubmitter(req, res, next) {
                 req.flash('success', "It has happened");
                 return next();
             } else {
-                req.flash('danger', "If you alter that post, that's like stealing!");
+                req.flash('danger', "If you alter that post, that's like vandalism!");
                 console.log("The submitter is not the user logged in");
                 //FLASH HERE (Only the post submitter can alter the post)
                 res.redirect('/dnd/gm/adventures');

@@ -77,10 +77,9 @@ router.post('/login', function (req, res, next) {
     passport.authenticate('local', {
         successRedirect: '/',
         failureRedirect: '/users/login',
+        successFlash: "You are now logged in.",
         //have to connect flashing ffs
-        badRequestMessage: req.flash('danger', 'The username or password was incorrect'),
-        goodRequestMessage: req.flash('success', 'The username or password was correct'),
-        failureFlash: true
+        failureFlash: "The username or password was incorrect."
     })(req, res, next);
 });
 
