@@ -9,8 +9,13 @@
 		</div>
 	</div>
 	<div id = "root">
+	<% flash.forEach(function(message) { %>
+				<div class = "alert alert-<%= message.type %>" role = "alert" style = "margin-left: 2rem; margin-right: 0rem;">
+					 <%= message.message %>
+				</div> 
+	<% }); flash.shift(); flash.shift(); flash.shift(); flash.shift(); flash.shift(); flash.shift(); flash.shift(); flash.shift(); flash.shift(); %>
 		<div class = "row">
-			<ul class="breadcrumb">
+			<ul class="breadcrumb" style="margin-right:1rem;">
 				<li><a href="/dnd">DND</a></li>
 				<li><a href="/dnd/gm">GM</a></li>
 				<li>Adventures</li>

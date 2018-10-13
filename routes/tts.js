@@ -17,6 +17,7 @@ router.post('/', function (req, res) {
     console.log('submitted');
     console.log(req.body.ttsField);
     say.speak(req.body.ttsField);
+    req.flash('success', 'The words you have typed are now blasting over my speakers');
     res.redirect('/tts');
     return;
 })

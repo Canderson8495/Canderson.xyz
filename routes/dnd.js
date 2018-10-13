@@ -12,7 +12,7 @@ router.get('/', function (req, res) {
 
 /* GET  PC Toolkit menu */
 router.get('/pc', function (req, res) {
-    res.render('dndpc', { title: 'PC ToolKit' });
+    res.render('dndpc', { title: "Player's ToolKit" });
 });
 
 module.exports = router;

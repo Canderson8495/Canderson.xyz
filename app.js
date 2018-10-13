@@ -14,6 +14,7 @@ var p = require('path');
 var mysql = require('mysql');
 var db = require('./config/db.js');
 
+
 const app = express();
 
 app.use(flash());
@@ -33,6 +34,10 @@ require('./config/passport')(passport);
 app.use(session({ secret: 'anything' }));
 app.use(passport.initialize());
 app.use(passport.session());
+var flasher = require('connect-flash');
+
+app.use(flasher());
+app.use(require('flash')());
 
 app.get('*', function (req, res, next) {
     console.log(req.session)
@@ -80,7 +85,7 @@ app.use('/dnd', dnd);
 app.use('/dnd/gm', gm);
 app.use('/users', users);
 
-app.set('port', 3000);
+app.set('port', 80);
 
 var server = app.listen(app.get('port'), function () {
     debug('Express server listening on port ' + server.address().port);
