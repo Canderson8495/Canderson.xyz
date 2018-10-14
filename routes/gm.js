@@ -124,6 +124,11 @@ router.get('/gen', function (req, res) {
         title: 'Generators'
     });
 });
+router.get('/resources', function (req, res) {
+    res.render('dndgmencounters', {
+        title: 'Generators'
+    });
+});
 
 //Access Control
 
