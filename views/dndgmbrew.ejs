@@ -25,7 +25,7 @@
 				<hr style = "margin-left: 2rem; margin-right: 2rem;">
 				<div class = "card-container">
 					<div class = col-md-6>
-						<% for(var i=0; i < 8; i+= 2) { %>
+						<% for(var i=0; i < adventureTitles.length; i+= 2) { %>
 							<div id = 'cardClass<%=i%>' class = "card">
 								<h1 class = "head"><%= adventureTitles[i].Title %></h1>
 								<div class = 'cardStyle'>
@@ -36,7 +36,7 @@
 						<% } %>
 					</div>
 					<div class = col-md-6>
-						<% for(var i=1; i < 8; i+= 2) { %>
+						<% for(var i=1; i < adventureTitles.length; i+= 2) { %>
 							<div id = 'cardClass<%=i%>' class = "card">
 								<h1 class = "head"><%= adventureTitles[i].Title %></h1>
 								<div class = 'cardStyle'>
@@ -56,15 +56,6 @@
 					<% for(var i=0; i < adventureTitles.length; i++) { %>
 							<a class="list-group-item" href = "/dnd/gm/adventures/<%= adventureTitles[i].idADVENTURE %>"><%= adventureTitles[i].Title %></a>
 					<% } %>
-					<% for(var i=0; i < adventureTitles.length; i++) { %>
-							<a class="list-group-item" href = "/dnd/gm/adventures/<%= adventureTitles[i].idADVENTURE %>"><%= adventureTitles[i].Title %></a>
-					<% } %>
-					<% for(var i=0; i < adventureTitles.length; i++) { %>
-							<a class="list-group-item" href = "/dnd/gm/adventures/<%= adventureTitles[i].idADVENTURE %>"><%= adventureTitles[i].Title %></a>
-					<% } %>
-					<a href = "/" class = "list-group-item"> Test </a>
-					<a href = "/" class = "list-group-item"> Test </a>
-
 				</div>
 			</div>
 		</div>

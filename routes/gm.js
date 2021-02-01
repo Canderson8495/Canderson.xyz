@@ -14,15 +14,18 @@ router.get('/', function (req, res) {
 });
 
 router.get('/adventures', function (req, res) {
+
+    var SQLLimit = 10;
     
-    var sql = "SELECT * FROM mydb.ADVENTURE;";
+    var sql = "SELECT * FROM mydb.ADVENTURE LIMIT " + SQLLimit + ";";
     db.query(sql, function (err, result) {
         var SQLTitles;
         if (err) throw err;
         res.render('dndgmbrew', {
             title: 'Home Brew Adventures',
             adventureTitles: result,
-            endBlock: "</p></strong></i></u></center></code></left></right></li></ul></ol>"
+            endBlock: "</p></strong></i></u></center></code></left></right></li></ul></ol>",
+            limit: SQLLimit
         });
     });
 });
@@ -89,6 +92,7 @@ router.post('/adventures/add', function (req, res) {
     var author = req.body.author;
     console.log(author);
     var content = req.body.content;
+    //actually displays content
     console.log(req.body.content);
     console.log("What the FJCK is going  on " + req.user.idUSER);
     var sql = "INSERT INTO ADVENTURE (Title, Author, Content, Submitter) VALUES (" + mysql.escape(title) + ", " + mysql.escape(author) + "," + mysql.escape(content) + ","+ mysql.escape(req.user.idUSER) + ");";

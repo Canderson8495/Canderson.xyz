@@ -72,8 +72,17 @@
 			var form = document.getElementById('FullForm');
 			form.onsubmit = function() {
 			  var html = form.children[2].outerHTML
-			  document.getElementById("HiddenContent").value = html.substring(html.indexOf('gramm_editor="true">') + 20, html.indexOf("</div><grammarly-btn>"));
-				console.log(document.getElementById("HiddenContent").value);
+              var start = html.indexOf('div class="ql-editor"');
+              var end   = html.indexOf('div class="ql-clipboard"');
+              var subhtml = html.substring(start,end);
+              console.log("first pass" + subhtml);
+              start = subhtml.indexOf(">")+1;
+              end   = subhtml.indexOf('</div>');
+              var finalhtml = subhtml.substring(start,end);
+              console.log("second pass" + finalhtml);
+              document.getElementById("HiddenContent").value = finalhtml;
+			  //document.getElementById("HiddenContent").value = html.substring(html.indexOf('gramm_editor="true">') + 20, html.indexOf("</div><grammarly-btn>"));
+				//console.log(document.getElementById("HiddenContent").value);
 			  return true;
 			};
 			</script>
